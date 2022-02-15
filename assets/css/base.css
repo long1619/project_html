@@ -1,0 +1,214 @@
+/* css tổng thể web*/
+:root {
+  /* nơi khai báo biến css */
+  --primary-color: #ee4d2d;
+  --white-color: #fff;
+  --back-color: #000;
+  --text-color: #333;
+  --border-color: #dbdbdb;
+  --start-gold-color: #ffce3e;
+  /*-----*/
+  --header-height: 120px;
+  --navbar-height: 34px;
+  --header-with-search-height: cacl(
+    var(var(--header-height)- var(--navbar-height)) ;
+  );
+}
+* {
+  /* apply tất cả thuộc tính css*/
+  box-sizing: inherit; /* kế thừa lại thẻ boder-box */
+}
+html {
+  font-size: 62.5%;
+  line-height: 1.6rem;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+/* reponsive */
+.grid {
+  width: 1200px; /* màn hình tối đa 1200*/
+  max-width: 100%; /* giảm kích thước bằng kích thước màn hình*/
+  margin: 0 auto;
+}
+.grid_full-width {
+  /* trong trường hợp nếu k muốn dùng   width: 1200px;*/
+  width: 100%;
+}
+.grid_row {
+  display: flex;
+  flex-wrap: wrap; /* tổng th con mà nó lớn hơn grid_row thì sẽ nhảy xuống hàng*/
+  margin-left: -5px;
+  margin-right: -5px;
+}
+/*-----------------*/
+.grid__column-2 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 16.667%;
+}
+.grid__column-2-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 20%;
+}
+.grid__column-10 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 83.3334%;
+}
+/* hiệu ứng mờ khi hover mã QR */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* bật lên khi vào form login, register */
+@keyframes growth {
+  from {
+    transition: scale(var(--growth-from));
+  }
+  to {
+    transition: scale(var(--growth-to));
+  }
+}
+/*--------------------------------Modal--------------------------*/
+/* lớp modal chiếm toàn bộ màn hình */
+.modal {
+  position: fixed; /* full màn hình */
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex; /* căn ngang */
+  /*hiệu ứng animation */
+  animation: fadeIn linear 0.1s;
+}
+/* hiển thị màu xám khi chọn vô nút */
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+/* phần thân from */
+.modal__body {
+  --growth-from: 0.7;
+  --growth-to: 1;
+  margin: auto; /* căn ra giữa */
+  position: relative;
+  z-index: 1; /* hiển thị trên màu xám */
+  animation: growth linear 0.1s;
+}
+/*-------nút -------------------*/
+.btn {
+  min-width: 142px;
+  height: 34px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.5rem;
+  padding: 0 12px;
+  outline: none;
+  cursor: pointer;
+  color: var(--text-color);
+  /*---------*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.6rem;
+}
+/* hover nút trở lại */
+.btn.btn--normal:hover {
+  background-color: rgba(53, 7, 7, 0.5);
+}
+.btn.btn--primary {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+/* nút FB-GG */
+.btn.btn--size-s {
+  height: 32px;
+  font-size: 12px;
+  padding: 0 8px;
+}
+/* nút selection ở giữa */
+.select-input {
+  position: relative;
+  min-width: 200px;
+  height: 34px;
+  padding: 0;
+  border-radius: 2px;
+  background-color: var(--white-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.select-input:hover .select-input__list {
+  display: block;
+}
+.select-input__label {
+  font-size: 1.4rem;
+  padding-left: 16px;
+}
+.select-input__icon {
+  font-size: 1.4rem;
+  color: rgb(131, 131, 131);
+  position: relative;
+  top: 1px;
+}
+.select-input__list {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 25px;
+  border-radius: 2px;
+  background-color: var(--white-color);
+  padding: 8px 16px;
+  list-style: none;
+  display: none;
+  z-index: 1;
+}
+/* chữ của selection trỏ xuống */
+.select-input__link {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+}
+.select-input__link:hover {
+  color: var(--primary-color);
+}
+
+/*-----------------pagination--------------*/
+.pagination {
+  /* display: none; */
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+.pagination-item {
+  margin: 0 12px;
+}
+.pagination-item--active .pagination-item__link {
+  color: var(--white-color);
+  background-color: var(--primary-color);
+}
+.pagination-item--active .pagination-item__link:hover {
+  background-color: #ed5c3f;
+}
+.pagination-item__link {
+  display: block;
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 2rem;
+  color: #939393;
+  min-width: 40px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 2px;
+}
